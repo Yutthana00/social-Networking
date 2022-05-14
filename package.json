@@ -1,0 +1,25 @@
+{
+  "name": "social-linkup-api",
+  "version": "1.0.0",
+  "description": "to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. You’ll use Express.js for routing, a MongoDB database, and the Mongoose ODM.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yutthana00/social-linkup-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yutthana00/social-linkup-api/issues"
+  },
+  "homepage": "https://github.com/Yutthana00/social-linkup-api#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.3.3",
+    "nodemon": "^2.0.16",
+  }
+}
