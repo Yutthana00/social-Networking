@@ -95,6 +95,11 @@ module.exports = {
     },
     // Add new Reaction
     addReaction({ params, body }, res) {
-        { _id: params.}
+        Opinion.findOneAndUpdate(
+        { _id: params. opinionId }, 
+        {$push: { reactions: body } },
+        { new: true, runValidators: true }
+    )
+    
     }
 }
