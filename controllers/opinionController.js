@@ -31,7 +31,7 @@ module.exports = {
 
     // Update opinion by ID:
     updateOpinion({ params, body }, res) {
-        Opinion.findOneAndUpdate({ _id: params.thoughtId }, body, {
+        Opinion.findOneAndUpdate({ _id: params.opinionId }, body, {
             new: true,
             runValidators: true,
         })
@@ -100,6 +100,36 @@ module.exports = {
         {$push: { reactions: body } },
         { new: true, runValidators: true }
     )
+        .populate({ path: "reactions", select: "-__v" })
+        .select("-__v")
+        .then((dbOpinionData) => {
+        if (!dbOpinionData) {
+            res
+            .status(404)
+            .json({ message: "No opinion with this ID!" });
+            return;
+        }
+        res.json(dbOpinionData);
+        })
+        .catch((err) => res.status(400).json(err));
+    },
     
-    }
+    // Delete a reaction by ID
+    removeReaction({ params }, res) {
+        Opinion.findOneAndUpdate(
+        { _id: params.opinionId },
+        { $pull: { reactions: { reactionId: params.reactionId } } },
+        { new: true }
+        )
+        .then((dbOpinionData) => {
+            if (!dbOpinionData) {
+            res
+                .status(404)
+                .json({ message: "No opinion with this ID!" });
+            return;
+            }
+            res.json(dbOpinionData);
+        })
+        .catch((err) => res.status(400).json(err));
+    },
 }
