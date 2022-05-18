@@ -8,24 +8,24 @@ module.exports = {
         Opinion.findOne({ _id: params.opinionId })
             .then((opinionData) => {
                 if (!opinionData) {
-                    res.status(404).JSON ({ message: "No comments with this ID" });
+                    res.status(404).json ({ message: "No comments with this ID" });
                     return;
                 }
-                res.JSON(opinionData);
+                res.json(opinionData);
             })
             .catch((err) => {
                 console.log(err);
-                res.status(400).JSON(err);
+                res.status(400).json(err);
             });
     },
 
     // Get all opinions:
     getAllOpinions(req,res) {
         Opinion.find({})
-            .then((opinionData) => res.JSON(opinionData))
+            .then((opinionData) => res.json(opinionData))
             .catch ((err) => {
                 console.log(err);
-                res.status(400).JSON(err);
+                res.status(400).json(err);
             });
     },
 
@@ -37,12 +37,12 @@ module.exports = {
         })
         .then((opinionData) => {
             if (!opinionData) {
-                res.status(404).JSON({ message: "No comment with ID"});
+                res.status(404).json({ message: "No comment with ID"});
                 return;
             }
-            res.JSON(opinionData);
+            res.json(opinionData);
         })
-        .catch((err) => res.status(400).JSON(err));
+        .catch((err) => res.status(400).json(err));
     },
 
     // Adding an opinion to a user:
@@ -58,12 +58,12 @@ module.exports = {
             })
             .then((userData) => {
                 if (!userData) {
-                    res.status(404).JSON({ message: "USER ID NOT FOUND"});
+                    res.status(404).json({ message: "USER ID NOT FOUND"});
                     return;
                 }
-                res.JSON(userData);
+                res.json(userData);
             })
-            .catch((err) => res.JSON(err));
+            .catch((err) => res.json(err));
     },
     
     // Remove opinion:
@@ -71,11 +71,11 @@ module.exports = {
         Opinion.findOneAndDelete({ _id:params.opinionId })
         .then((deleteOpinion) => {
             if (!deleteOpinion) {
-                return res.status(404).JSON({ message: "Comment not found with this ID"});
+                return res.status(404).json({ message: "Comment not found with this ID"});
             }
-            res.JSON(deleteOpinion);
+            res.json(deleteOpinion);
         })
-        .catch((err) => res.status(400).JSON(err));
+        .catch((err) => res.status(400).json(err));
     },
 
     // Update opinion by ID:
@@ -86,12 +86,12 @@ module.exports = {
         })
         .then((opinionData) => {
             if (!opinionData) {
-                res.status(404).JSON({ message: "No opinion found with this ID"});
+                res.status(404).json({ message: "No opinion found with this ID"});
                 return;
             }
             res.json(opinionData);
         })
-        .catch((err) => res.status(400).JSON(err));
+        .catch((err) => res.status(400).json(err));
     },
     // Add new Reaction
     addReaction({ params, body }, res) {

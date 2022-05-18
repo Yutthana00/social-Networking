@@ -6,10 +6,10 @@ module  .exports = {
     // Get all users:
     getAllUsers(req, res) {
         User.find({})
-        .then((userData) => res.JSON(userData))
+        .then((userData) => res.json(userData))
         .catch((err) => {
             console.log(err);
-            res.status(400).JSON(err);
+            res.status(400).json(err);
         });
     },
 
@@ -21,22 +21,22 @@ module  .exports = {
         .select('-__v')
         .then((userData) => {
             if (!userData) {
-                res.status(404).JSON ({ message: "User ID not found" });
+                res.status(404).json ({ message: "User ID not found" });
                 return;
             }
-            res.JSON(userData);
+            res.json(userData);
         })
         .catch((err) => {
             console.log(err);
-            res.status(400).JSON(err);
+            res.status(400).json(err);
         });
     },
 
     // Create a User:
     createUser({ body }, res) {
         User.create(body)
-        .then((dbUserData) => res.JSON(dbUserData))
-        .catch((err) => res.status(400).JSON(err));
+        .then((dbUserData) => res.json(dbUserData))
+        .catch((err) => res.status(400).json(err));
     }, 
 
     // Update user by ID:
@@ -47,12 +47,12 @@ module  .exports = {
         })
         .then((userData) => {
             if (!userData) {
-                res.status(404).JSON({ message: "User ID not found" });
+                res.status(404).json({ message: "User ID not found" });
                 return;
             }
-            res.JSON(userData);
+            res.json(userData);
         })
-        .catch((err) => res.status(400).JSON(err));
+        .catch((err) => res.status(400).json(err));
     },
 
     // Add friend:
