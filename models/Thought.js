@@ -2,8 +2,8 @@ const { Schema, model } = require("mongoose");
 const moment = require("moment");
 const reactionSchema = require("./Reaction");
 
-const opinionSchema = new Schema({
-  opinionText: {
+const thoughtSchema = new Schema({
+  ThoughtText: {
     type: String,
     required: true,
     len: [1, 280],
@@ -23,7 +23,7 @@ const opinionSchema = new Schema({
   reactions: [reactionSchema],
 });
 
-const Opinion = model("opinion", opinionSchema);
+const Thought = model("thought", thoughtSchema);
 
-module.exports = Opinion;
+module.exports = Thought;
 

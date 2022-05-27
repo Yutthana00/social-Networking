@@ -1,4 +1,4 @@
-const { User, Opinion } = require('../models');
+const { User, Thought } = require('../models');
 
 // User controller variable
 
@@ -16,7 +16,7 @@ module  .exports = {
     // get one user by ID:
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
-        .populate('opinions')
+        .populate('thoughts')
         .populate('friends')
         .select('-__v')
         .then((userData) => {
