@@ -1,5 +1,5 @@
-// Basic dependencies required:
-const express = request('express');
+// Basic dependencies:
+const express = require('express');
 const mongoose = require('mongoose');
 
 // Express Port:
@@ -9,13 +9,15 @@ const PORT = process.env.PORT || 3001;
 // Middle ware:
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
+
 app.use(require('./routes'));
 
 //Connection to MongoDB database:
 mongoose.connect(
-    process.env.MONGODB_URL || 'mongodb://localhost...........'
+    process.env.MONGODB_URL || "mongodb://localhost:27017/social-linkup-api",
     {
         useNewUrlParser: true,
+        // checking network connection
         useUnifiedTopology: true,
     }
 );
