@@ -1,31 +1,31 @@
-const  { Thought, User } = require('../models');
+const  { Thought, User, Reaction } = require('../models');
 // const { route } = require('../routes/api/thoughtRoutes');
 
-module.exports = {
+const thoughtController = {
 
     // Get thought by ID:
     getThoughtByID({ params }, res) {
-        Thought.findOne({ _id: params.thoughtId })
+        Thought.findOne({ _id: params.id })
             .then((thoughtData) => {
                 if (!thoughtData) {
                     res.status(404).json ({ message: "No comments with this ID" });
                     return;
                 }
-                res.json(thoughtData);
+                res.json(thought);
             })
-            .catch((err) => {
-                console.log(err);
-                res.status(400).json(err);
-            });
+            // .catch((err) => {
+            //     console.log(err);
+            //     res.status(400).json(err);
+            
     },
 
     // Get all thoughts:
-    getAllThoughts(req,res) {
-        Thought.find({})
-            .then((thoughtData) => res.json(thoughtData))
+    getAllThoughts(req, res) {
+        Thought.find()
+            .then((thought) => res.json(thought))
             .catch ((err) => {
                 console.log(err);
-                res.status(400).json(err);
+                res.status(500).json(err);
             });
     },
 
@@ -131,4 +131,5 @@ module.exports = {
             res.json(dbThoughtData);
         })
         .catch((err) => res.status(400).json(err));
-    }
+    };
+
