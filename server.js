@@ -15,7 +15,7 @@ app.use(routes);
 
 //Connection to MongoDB database:
 mongoose.connect(
-    process.env.MONGODB_URL || 'mongodb://localhost:27017/social-linkup-api', {});
+    process.env.MONGODB_URI || 'mongodb://localhost/social-linkup-api', {});
 
 // Log mongo:
 mongoose.set('debug, true');
