@@ -6,6 +6,8 @@ const {
     deleteThought,
     addReaction,
     deleteReaction,
+    getThoughtById,
+
 } = require('../../controllers/thoughtController');
 
 // Api get all user thoughts and create thought:
