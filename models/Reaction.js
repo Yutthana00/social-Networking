@@ -1,17 +1,16 @@
 const { Schema, Types } = require('mongoose');
 const moment = require('moment');
 const reactionSchema = new Schema(
-    // Custom id to avoid confusion to parent id
+    // User id to avoid confusion to parent id
     {
         reactionId: {
-            type: Types.ObjectId,
-            default: new Types.ObjectId(),
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId(),
         },
         reactionBody: {
             type: String,
             required: true,
-            minLength: 1,
-            maxLength: 280,
+            len: [1, 280],
         },
         username: {
             type: String,
