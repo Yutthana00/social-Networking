@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Module } = require('module');
 // const { model } = require('mongoose');
 const thoughtRoutes = require('./thoughtRoutes');
 const userRoutes = require('./userRoutes');
@@ -6,4 +7,4 @@ const userRoutes = require('./userRoutes');
 router.use('/users', userRoutes);
 router.use('/thoughts', thoughtRoutes);
 
-model.exports = router;
+Module.exports = router;
