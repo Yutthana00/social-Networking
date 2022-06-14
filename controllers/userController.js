@@ -1,8 +1,8 @@
-const { User } = require('../models');
+const { User, Thought } = require('../models');
 
 // User controller variable
 
-module  .exports = {
+module .exports = {
     // Get all users:
     getAllUsers(req, res) {
         User.find({})
@@ -13,9 +13,9 @@ module  .exports = {
         });
     },
 
-    // get one user by ID:
+    // call a single user by ID:
     getUserById({ params }, res) {
-        User.findOne({ _id: params.id })
+      User.findOne({ _id: params.id })
         .populate('thoughts')
         .populate('friends')
         .select('-__v')
@@ -106,5 +106,3 @@ module  .exports = {
           .catch((err) => res.status(400).json(err));
       },
 };
-
-module.exports = userController;
