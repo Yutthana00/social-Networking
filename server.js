@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 // Middle ware:
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
-app.use(require('./routes');
+app.use(require('./routes'));
 
 //Connection to MongoDB database:
 mongoose.connect(
