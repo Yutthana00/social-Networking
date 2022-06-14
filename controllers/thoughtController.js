@@ -1,13 +1,14 @@
-const  { Thought, User, Reaction } = require('../models');
+const  { Thought, User } = require('../models');
 // const { route } = require('../routes/api/thoughtRoutes');
 
-const thoughtController = {
+module.exports = {
     // Get user thoughts:
     getAllThoughts(req, res) {
-        Thought.find()
-          .then((thought) => res.json(thought))
-          .catch((err) => res.status(500).json(err));
-      },
+        Thought.find({})
+          .then((thoughtData) => res.json(thoughtData))
+          .catch((err) => { console.log(err); res.status(400).json(err);
+        });
+    },
 
     // Create a thought
     createThought({ body }, res) {
@@ -120,5 +121,3 @@ const thoughtController = {
       .catch((err) => res.status(400).json(err));
   },
 };
-
-module.exports = thoughtController;
