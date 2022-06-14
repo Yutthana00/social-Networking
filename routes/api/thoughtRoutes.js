@@ -10,13 +10,18 @@ const {
 
 } = require('../../controllers/thoughtController');
 
-// Api get all user thoughts and create thought:
-router.route('/').get(getAllThoughts).post(createThought);
+const { route } = require('./userRoutes');
 
-// Api get, put and delete thoughts:
-router.route('/:id').get(getThoughtById).put(editThought).delete(deleteThought);
+// Api get all user thoughts and create thought:
+router.route('/').get(getAllThoughts);
+
+router.route("/:thoughtId").get(getThoughtByID).put(updateThought).delete(removeThought);
+
+router.route('/:useId').post(addThought);
 
 // Api add and delete reactions:
-router.route('/:thoughtId/reactions/').post(addReaction).delete(deleteReaction);
+router.route('/:thoughtId/reactions/:reactionID').delete(removeReaction);
+
+router.route("/:thoughtId.reactions").post(addReaction);
 
 module.exports = router;
