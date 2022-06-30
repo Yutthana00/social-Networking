@@ -23,4 +23,4 @@ mongoose.connect(
 mongoose.set('debug', true);
 
 // Server listening response:
-app.listen(PORT, () => console.log('Connected to:${PORT}'));
+app.listen(PORT, () => console.log(`Connected to localhost:${PORT}`));
