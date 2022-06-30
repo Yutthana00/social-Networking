@@ -1,5 +1,5 @@
 const  { Thought, User } = require('../models');
-// const { route } = require('../routes/api/thoughtRoutes');
+const { route } = require('../routes/api/thoughtRoutes');
 
 module.exports = {
     // Get user thoughts:
@@ -92,7 +92,11 @@ module.exports = {
   // Post new reaction:
   addReaction({ params, body }, res) {
     // find thought by ID and add reaction to reactions set
-    Thought.findOneAndUpdate({ _id: params.thoughtId }, { $push: { reactions: body } }, { new: true, runValidators: true })
+    Thought.findOneAndUpdate(
+      { _id: params.thoughtId }, 
+      { $push: { reactions: body } }, 
+      { new: true, runValidators: true }
+      )
       .populate({ path: "reactions", select: "-__v" })
       .select("-__v")
       .then((dbThoughtsData) => {
